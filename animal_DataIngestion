@@ -1,0 +1,23 @@
+"""
+Extract value from:
+3 fields through API -> store in a df
+3 fields through -> CSV
+3 fields through -> JSON
+
+**Streaming Azure Stream Analytics**
+
+Transform
+Separate dates
+drop values
+etc.
+
+Load
+Warehouse with data model - Azure Synapse
+data lake
+
+Visualization - PowerBi
+(Need Windows, will be leveraging Github to move code)
+
+Approach will be using Azure Technology
+
+"""
