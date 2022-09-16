@@ -20,4 +20,13 @@ Visualization - PowerBi
 
 Approach will be using Azure Technology
 
+for windwos to install packages python -m pip install
+
+   List of fields
+    Index(['animal_id', 'name', 'datetime', 'monthyear', 'date_of_birth',
+       'outcome_type', 'animal_type', 'sex_upon_outcome', 'age_upon_outcome',
+       'breed', 'color'],
+      dtype='object')
+
 """
+
