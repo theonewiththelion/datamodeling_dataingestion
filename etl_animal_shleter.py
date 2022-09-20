@@ -31,8 +31,8 @@ def api_extraction():
     #print(outcome)
     print(outcome.head())
     
-    #Create table into ...
-    #Streaming?
-    
+
+    #Create table into data warehouse, and then upload
+    #use streaming to send the data to the PowerBI/Data visualization
     
 api_extraction()
