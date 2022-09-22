@@ -14,4 +14,5 @@ cursor.execute("SELECT * FROM SalesLT.Address")
 row = cursor.fetchone() 
 while row:
     print (row) 
-    row = cursor.fetchone()
+    row = cursor.fetchone() 
+    #This works
