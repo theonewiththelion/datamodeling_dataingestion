@@ -12,7 +12,6 @@ def api_extraction():
     animal_shelter_table = animal_shelter_api.text
     #print(animal_shelter_table)
 
-
     # #Convert variable austin_crime into JSON format
     json.loads(animal_shelter_table)
     #print(animal_shelter_table)
