@@ -13,6 +13,7 @@ with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE=
         cursor.execute("SELECT @@Version")
         row = cursor.fetchall()
         print(row)
+        print("hi")
 
 
 
