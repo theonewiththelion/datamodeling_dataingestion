@@ -1,4 +1,2 @@
---DROP TABLE animal_name;
+DROP TABLE animal_name_shelter;
 
-SELECT *
-FROM animal_name;

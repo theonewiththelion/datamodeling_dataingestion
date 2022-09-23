@@ -11,7 +11,7 @@ password = 'Azure_Password'
 driver= '{ODBC Driver 18 for SQL Server}'
 
 
-animal_shelter_api = requests.get("https://data.austintexas.gov/resource/9t4d-g238.json?$limit=10")
+animal_shelter_api = requests.get("https://data.austintexas.gov/resource/9t4d-g238.json?$limit=12")
 animal_shelter_table = animal_shelter_api.text
 json.loads(animal_shelter_table)
 animal_shelter_table = pd.read_json(animal_shelter_table)
