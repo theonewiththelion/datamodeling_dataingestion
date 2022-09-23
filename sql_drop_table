@@ -1,0 +1,4 @@
+--DROP TABLE animal_name;
+
+SELECT *
+FROM animal_name;

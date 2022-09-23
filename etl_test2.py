@@ -26,34 +26,37 @@ cnxn = pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABAS
 cursor = cnxn.cursor()
 
 #create table in Azure
-#need to add an iff in case is exist
+#If table exist
+cursor.execute('''
+		IF OBJECT_ID('animaldatabase.dbo.animal_name') IS NULL
+			Begin
+				CREATE TABLE animal_name 
+					(
+					animal_id nvarchar(50) primary key,
+					name nvarchar(50),
+					animal_type nvarchar(50),
+					breed nvarchar(50),
+					color nvarchar(50)
+					)
+ 				END;
+				''')
+cnxn.commit()
+
+#Add value to the table animal_name
+# TEST if Table exist, then create record 8
+# If not, create record 9
+
+for index, row in name.iterrows():
+     cursor.execute("INSERT INTO dbo.animal_name (animal_id,name,animal_type,breed,color) values(?,?,?,?,?)", row.animal_id, row.name, row.animal_type, row.breed, row.color)
+cnxn.commit()
+cursor.close()
 
 
-
-# cursor.execute('''
-# 		CREATE TABLE animal_name (
-# 			animal_id int primary key,
-# 			name nvarchar(50),
-# 			animal_type nvarchar(50),
-#           breed nvarchar(50),
-#           color nvarchar(50)
-# 			)
+# cnxn.execute('''
+# 			INSERT INTO animal_name (animal_id, name, animal_type,breed,color)
+# 			VALUES
+# 				(12,'Piruli','Dog','Labrador','a')
 #         ''')
 # cnxn.commit()
 
 
-#Add value to the tables
-cnxn.execute('''
-		INSERT INTO animal_name (animal_id, name, animal_type,breed,color)
-		VALUES
-			(1,'Piruli','Dog','Labrador','a')
-            ''')
-cnxn.commit()
-
-
-# cursor.execute("SELECT * FROM Employees") 
-# row = cursor.fetchone() 
-# while row:
-#     print (row) 
-#     row = cursor.fetchone() 
-#     #This works

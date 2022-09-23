@@ -1,3 +1,5 @@
 SELECT *
-FROM dbo.animal_name
-GO
+FROM animaldatabase.INFORMATION_SCHEMA.COLUMNS;
+
+SELECT *
+FROM animal_name;

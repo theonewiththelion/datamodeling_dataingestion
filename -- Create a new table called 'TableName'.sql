@@ -2,6 +2,10 @@
 -- Drop the table if it already exists
 
 
+
+
+
+
    IF OBJECT_ID('dbo.Employees', 'U') IS NOT NULL
    DROP TABLE dbo.Employees
    GO
