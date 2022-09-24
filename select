@@ -1,0 +1,3 @@
+select * from names
+select * from dates
+select * from outcome

@@ -19,16 +19,22 @@ def api_extraction():
     # #Save Json file into a dataframe
     animal_shelter_table = pd.read_json(animal_shelter_table)
     #print(animal_shelter_table)
+    print(animal_shelter_table.columns)
     
    # print(animal_shelter_table.columns)
 
     name = animal_shelter_table[["animal_id","name","animal_type","breed","color"]]
     print(name.head())
+    
+    
     dates = animal_shelter_table[["animal_id","datetime","monthyear","date_of_birth"]]
-    print(dates.head())
+    print(dates)
     outcome = animal_shelter_table[["animal_id","outcome_type","sex_upon_outcome","age_upon_outcome"]]
     #print(outcome)
     print(outcome.head())
     
-    
+    path = "C:/Users/Gaming PC/Desktop/datamodeling_dataingestion/date.csv"
+    #path = "C:\Users\Gaming PC\Desktop\datamodeling_dataingestion\"
+       #Test only
+    dates.to_csv(path,index=False)
 api_extraction()
