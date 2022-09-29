@@ -1,1 +1,3 @@
-DROP TABLE animal_name_shelter;
+DROP TABLE names
+DROP TABLE dates
+DROP TABLE outcome

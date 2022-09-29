@@ -43,7 +43,7 @@ meta = MetaData()
 def api_extraction():
     
     #animal_shelter_api = requests.get("https://data.austintexas.gov/resource/9t4d-g238.csv?$limit=10")
-    animal_shelter_api = requests.get("https://data.austintexas.gov/resource/9t4d-g238.json?$limit=1")
+    animal_shelter_api = requests.get("https://data.austintexas.gov/resource/9t4d-g238.json?$limit=20")
     animal_shelter_table = animal_shelter_api.text
     json.loads(animal_shelter_table)
     animal_shelter_table = pd.read_json(animal_shelter_table)
@@ -126,9 +126,29 @@ def transformation():
     #take month year and separrate the values
     extract_dates[['Date', 'date_time']] = extract_dates['monthyear'].str.split('T', expand = True)
     
+    extract_dates[['date_year', 'date_month', 'date_day']] = extract_dates['Date'].str.split('-', expand = True)
+    
+    #Documentation
+    #https://stackoverflow.com/questions/40705480/python-pandas-remove-everything-after-a-delimiter-in-a-string
+    #Separate the field date of birth after the value "T"
+    extract_dates['date_of_birth'] = extract_dates['date_of_birth'].str.split('T').str[0]
+    
+    #extract_dates['date_time'] = extract_dates['date_time'].str.split('T', n=1).str[0]
+     
+     
+     
+    #drop "datetime", "monthyear"
+    #extract_dates.drop(['datetime','monthyear'], axis=1)
+    del extract_dates['datetime']
+    del extract_dates['monthyear']
+    
     print(extract_dates)
     
-    #drop "datetime"
+    
+    extract_dates.to_sql('dates', con=engine_azure, if_exists='replace', index=False)
+    print("Table dates transformed and updated")
+    
+    
 #date time, remove month year, and split date time in two columns one for date, other for time and find what they mean lol
 
 transformation()
