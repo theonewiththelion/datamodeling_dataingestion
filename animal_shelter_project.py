@@ -152,3 +152,63 @@ def transformation():
 #date time, remove month year, and split date time in two columns one for date, other for time and find what they mean lol
 
 transformation()
+
+def load_animal_shelter():
+
+#Load new tables into "Production"
+#Documentation https://learn.microsoft.com/en-us/sql/machine-learning/data-exploration/python-dataframe-pandas?view=sql-server-ver16
+
+    p_names = Table(
+        'p_names', meta,
+        Column('animal_id', String(20), primary_key = True),
+        Column('name', String),
+        Column('animal_type', String),
+        Column('breed', String),
+        Column('color', String),
+    )
+    
+    p_dates = Table(
+        'p_dates', meta,
+        Column('animal_id', String(20), primary_key = True),
+        Column('datetime', DateTime),
+        Column('monthyear', String),
+        Column('date_of_birth', String)
+    )
+    
+    p_outcome = Table(
+        'p_outcome', meta,
+        Column('animal_id', String(20), primary_key = True),
+        Column('outcome_type', String),
+        Column('sex_upon_outcome', String),
+        Column('age_upon_outcome', String)
+    )
+    
+    meta.create_all(engine_azure)
+    print("Tables created")
+    
+    
+    query_names = "SELECT * FROM names"
+    extract_names = pd.read_sql(query_names, conn_str)
+    print(extract_names)
+    
+    query_dates = "SELECT * FROM dates"
+    extract_dates = pd.read_sql(query_dates, conn_str)
+    print(extract_dates)
+    
+    query_outcome = "SELECT * FROM outcome"
+    extract_outcome = pd.read_sql(query_outcome, conn_str)
+    print(extract_outcome)
+    
+    
+ 
+    
+    extract_names.to_sql('p_names', con=engine_azure, if_exists='replace', index=False)
+    print("Table names Populated")
+    
+    extract_dates.to_sql('p_dates', con=engine_azure, if_exists='replace', index=False)
+    print("Table dates Populated")
+    
+    extract_outcome.to_sql('p_outcome', con=engine_azure, if_exists='replace', index=False)
+    print("Table outcome Populated")
+    
+load_animal_shelter()
