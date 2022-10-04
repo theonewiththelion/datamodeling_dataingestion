@@ -1,5 +1,0 @@
-SELECT *
-FROM animaldatabase.INFORMATION_SCHEMA.COLUMNS;
-
-SELECT *
-FROM animal_name;

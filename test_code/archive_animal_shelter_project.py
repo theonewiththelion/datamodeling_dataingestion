@@ -43,7 +43,7 @@ meta = MetaData()
 def api_extraction():
     
     #animal_shelter_api = requests.get("https://data.austintexas.gov/resource/9t4d-g238.csv?$limit=10")
-    animal_shelter_api = requests.get("https://data.austintexas.gov/resource/9t4d-g238.json?$limit=20")
+    animal_shelter_api = requests.get("https://data.austintexas.gov/resource/9t4d-g238.json?$limit=1000")
     animal_shelter_table = animal_shelter_api.text
     json.loads(animal_shelter_table)
     animal_shelter_table = pd.read_json(animal_shelter_table)
@@ -153,9 +153,11 @@ def transformation():
 
 transformation()
 
+#Create 3 new "Production" tables
 def load_animal_shelter():
 
 #Load new tables into "Production"
+#Store production values in it
 #Documentation https://learn.microsoft.com/en-us/sql/machine-learning/data-exploration/python-dataframe-pandas?view=sql-server-ver16
 
     p_names = Table(
@@ -200,7 +202,6 @@ def load_animal_shelter():
     print(extract_outcome)
     
     
- 
     
     extract_names.to_sql('p_names', con=engine_azure, if_exists='replace', index=False)
     print("Table names Populated")
