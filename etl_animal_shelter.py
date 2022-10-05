@@ -1,5 +1,4 @@
 from datetime import date, datetime
-import pyodbc
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, MetaData, DateTime, Float
 import urllib
@@ -25,8 +24,7 @@ meta = MetaData()
 
 
 
-#Extraction
-    
+#Extraction    
 #Extract data from API
 #Save information into dataframe called names    
 def api_extraction_names():
